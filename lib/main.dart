@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:patro_mero/view/screen/splashScreen.dart';
+import 'package:hamro_patro/view/screen/splashScreen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(

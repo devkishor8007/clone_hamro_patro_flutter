@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:patro_mero/view/utlities/color.dart';
-import 'package:patro_mero/view/widget/circleAvtar.dart';
-import 'package:patro_mero/view/widget/makeText.dart';
+import 'package:hamro_patro/view/utlities/color.dart';
+import 'package:hamro_patro/view/widget/circleAvtar.dart';
+import 'package:hamro_patro/view/widget/makeText.dart';
 
 class DrawerScreen extends StatelessWidget {
   @override

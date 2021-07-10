@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:patro_mero/view/screen/homeScreen.dart';
-import 'package:patro_mero/view/widget/makeText.dart';
+import 'package:hamro_patro/view/screen/homeScreen.dart';
+import 'package:hamro_patro/view/widget/makeText.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 5), finished);
+    Timer(Duration(seconds: 3), finished);
     super.initState();
   }
 

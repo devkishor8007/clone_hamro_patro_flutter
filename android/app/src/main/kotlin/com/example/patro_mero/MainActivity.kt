@@ -1,4 +1,4 @@
-package com.example.patro_mero
+package com.example.hamro_patro
 
 import io.flutter.embedding.android.FlutterActivity
 
