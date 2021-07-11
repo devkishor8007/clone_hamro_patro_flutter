@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hamro_patro/model/ads_model.dart';
+import 'package:hamro_patro/model/featurepodcast_model.dart';
 import 'package:hamro_patro/model/hamroService.dart';
 import 'package:hamro_patro/model/news_model.dart';
 import 'package:hamro_patro/view/screen/drawer.dart';
@@ -6,8 +8,14 @@ import 'package:hamro_patro/view/utlities/color.dart';
 import 'package:hamro_patro/view/widget/circleAvtar.dart';
 import 'package:hamro_patro/view/widget/makeText.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final scaff = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -30,7 +38,6 @@ class HomeScreen extends StatelessWidget {
             ),
             //twoRowSides : one side row contain today detail information and another side row contain the upcomming events
             twoRowSides(size, context),
-
             // manyUpcomingEvents - get all the Upcoming Events with the horizontal list data
             manyUpcomingEvents(size, context),
             // freeRedirectCall : navigate to the free call and message section
@@ -40,9 +47,94 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: size.height * 0.02,
             ),
+
             // givefeaturesNews : list of features news can be show and data is in the horizontal form
             givefeaturesNews(size, context),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            // adsShow : for showing the ads
+            adsShow(size),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            // givefeaturesPoadcast : list of features poadcast can be show and data is in the horizontal form
+            givefeaturesPoadcast(size, context),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget adsShow(Size size) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: size.height * 0.01,
+        horizontal: size.width * 0.02,
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.red,
+          ),
+        ),
+        height: size.height * 0.2,
+        width: size.width,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: getAdsMaker.length,
+          itemBuilder: (_, index) {
+            return Card(
+              child: Container(
+                width: size.width,
+                child: Stack(
+                  children: [
+                    Container(
+                        height: size.height * 0.2,
+                        width: size.width,
+                        child: getAdsMaker[index].fullimage),
+                    Positioned(
+                      bottom: size.height * 0.001,
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: size.width * 0.1,
+                        decoration: BoxDecoration(
+                          color: Colors.amberAccent,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                          ),
+                        ),
+                        child: makeText(
+                          "ads",
+                          fontWeight: FontWeight.bold,
+                          size: 15,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: size.height * 0.07,
+                      right: size.width * 0.1,
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: size.width * 0.35,
+                        height: size.height * 0.04,
+                        decoration: BoxDecoration(
+                          color: Colors.indigo,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: makeText(
+                          getAdsMaker[index].title,
+                          textColor: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          size: 13,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -155,6 +247,107 @@ class HomeScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Container(
+              width: size.width,
+              child: TextButton(
+                onPressed: () {},
+                child: makeText("View All >"),
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  primary: Colors.black,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget givefeaturesPoadcast(Size size, BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: size.height * 0.01,
+          horizontal: size.width * 0.02,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  width: size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      circleAvatar(
+                        radius: 20,
+                        child: Image.network(
+                            "https://image.flaticon.com/icons/png/512/945/945200.png"),
+                      ),
+                      makeText(
+                        "Featured Podcast in Hamro Patro",
+                        fontWeight: FontWeight.bold,
+                        size: Theme.of(context).textTheme.headline6.fontSize,
+                      ),
+                      makeText(
+                        "Nepali poadcasts that you need to listen today",
+                        size: Theme.of(context).textTheme.bodyText1.fontSize,
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  right: size.width * 0.06,
+                  top: size.height * 0.02,
+                  child: Icon(Icons.arrow_forward_rounded),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Container(
+              height: size.height * 0.23,
+              width: size.width,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: getFeaturepodcastModel.length,
+                itemBuilder: (_, index) {
+                  return Card(
+                    child: Container(
+                      width: size.width * 0.3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              height: size.height * 0.14,
+                              width: size.width * 0.3,
+                              child: getFeaturepodcastModel[index].fullimage),
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: size.height * 0.01,
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: makeText(
+                                getFeaturepodcastModel[index].title,
+                                fontWeight: FontWeight.bold,
+                                size: 15,
                               ),
                             ),
                           ),
@@ -738,6 +931,29 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  _bottomChangeLight(size, BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 200,
+            width: size.width,
+            child: Container(
+              color: Theme.of(context).canvasColor,
+              child: Column(
+                children: [
+                  makeText(
+                    "Select Theme",
+                    size: Theme.of(context).textTheme.headline6.fontSize,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   Widget customAppBar(Size size, BuildContext context) {
     return Row(
       children: [
@@ -784,7 +1000,9 @@ class HomeScreen extends StatelessWidget {
                   Icons.brightness_4_rounded,
                   color: black.withOpacity(0.46),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  _bottomChangeLight(size, context);
+                },
               ),
               IconButton(
                 icon: Icon(
