@@ -37,3 +37,30 @@ List<AdsMaker> getAdsMaker = [
     ),
   ),
 ];
+
+class ProductAds {
+  Image fullimage;
+
+  ProductAds({this.fullimage});
+}
+
+List<ProductAds> getProductAds = [
+  ProductAds(
+    fullimage: Image.asset(
+      "assets/ads1.png",
+      fit: BoxFit.fill,
+    ),
+  ),
+  ProductAds(
+    fullimage: Image.asset(
+      "assets/ads2.png",
+      fit: BoxFit.fill,
+    ),
+  ),
+  ProductAds(
+    fullimage: Image.asset(
+      "assets/ads3.png",
+      fit: BoxFit.fill,
+    ),
+  ),
+];
