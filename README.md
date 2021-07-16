@@ -10,7 +10,7 @@ This project is a starting to the clone of the Nepali Hamro Patro Android Mobile
 to help Nepalese living abroad stay in touch with Nepalese festivals and important dates in Nepali calendar year.
 
 Do download the Hamro Patro via PlayStore.
-https://play.google.com/store/apps/details?id=com.hamropatro&hl=en&gl=US
+[Download Link](https://play.google.com/store/apps/details?id=com.hamropatro&hl=en&gl=US)
 
 ## Output of the Clone - Hamro Patro Flutter
 <p float="left">
@@ -22,3 +22,19 @@ https://play.google.com/store/apps/details?id=com.hamropatro&hl=en&gl=US
 <img src="https://user-images.githubusercontent.com/73419211/125932215-ec50c93a-8f0c-48e0-a20e-d6f87851235d.jpg" height="500" width="260">
 <img src="https://user-images.githubusercontent.com/73419211/124706173-952d9880-df16-11eb-8c6b-0b9cee41006b.jpg" height="500" width="260">
 </p>
+
+#
+## Setup project
+
+#### Fork the repo and get the repo through Https | SSH | GitHub CLi
+    git clone https://github.com/devkishor8007/clone_hamro_patro_flutter.git
+
+#### Get flutter dependencies
+    flutter pub get
+    
+#### Run the app
+     flutter run
+   
+## Resources   
+[Flutter Docs](https://flutter.dev/docs)
+
