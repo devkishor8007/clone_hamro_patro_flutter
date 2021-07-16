@@ -3,10 +3,9 @@ import 'package:hamro_patro/view/screen/drawer.dart';
 import 'package:hamro_patro/view/utlities/color.dart';
 import 'package:hamro_patro/view/widget/adsShow.dart';
 import 'package:hamro_patro/view/widget/adsShowImage.dart';
-import 'package:hamro_patro/view/widget/circleAvtar.dart';
+import 'package:hamro_patro/view/widget/customAppBar.dart';
 import 'package:hamro_patro/view/widget/featuresNews.dart';
 import 'package:hamro_patro/view/widget/iconViewGrid.dart';
-import 'package:hamro_patro/view/widget/makeText.dart';
 import 'package:hamro_patro/view/widget/poadcastListen.dart';
 import 'package:hamro_patro/view/widget/showDetailInformation.dart';
 import 'package:hamro_patro/view/widget/upcommingEvent.dart';
@@ -30,7 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: BouncingScrollPhysics(),
           children: [
             //customAppBar : see the AppBar
-            customAppBar(size, context),
+            customAppBar(
+              size,
+              context,
+              onPressed: () {
+                scaff.currentState.openDrawer();
+              },
+            ),
             // noticeMessage - for the message to check the astrology or provide some offers
             noticeMessage(
               size,
@@ -162,93 +167,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ]),
         ),
       ),
-    );
-  }
-
-  _bottomChangeLight(size, BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            height: 200,
-            width: size.width,
-            child: Container(
-              color: Theme.of(context).canvasColor,
-              child: Column(
-                children: [
-                  makeText(
-                    "Select Theme",
-                    size: Theme.of(context).textTheme.headline6.fontSize,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
-  }
-
-  Widget customAppBar(Size size, BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {
-              scaff.currentState.openDrawer();
-            }),
-        Expanded(
-          child: Row(
-            children: [
-              circleAvatar(
-                radius: 11,
-                child: IconButton(
-                  padding: EdgeInsets.all(1),
-                  icon: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 17,
-                  ),
-                  onPressed: () {
-                    scaff.currentState.openDrawer();
-                  },
-                ),
-              ),
-              SizedBox(
-                width: size.width * 0.023,
-              ),
-              makeText(
-                'Hamro Patro',
-                fontWeight: FontWeight.bold,
-                size: Theme.of(context).textTheme.headline6.fontSize,
-                textColor: Colors.red,
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                icon: Icon(
-                  Icons.brightness_4_rounded,
-                  color: black.withOpacity(0.46),
-                ),
-                onPressed: () {
-                  _bottomChangeLight(size, context);
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.notifications,
-                  color: black.withOpacity(0.46),
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
